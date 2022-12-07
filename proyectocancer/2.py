@@ -1,0 +1,12 @@
+#MPL 3-layer Model ==============================================
+model = Sequential()
+model.add(Dense(10, activation='relu', input_shape=[X_train.shape[1]]))
+model.add(Dense(10, activation='relu'))
+model.add(Dense(1))
+print(model.summary())
+print(model.get_config())
+model.compile(optimizer = 'adam', loss = 'mean_squared_error',metrics = ['mse'])
+model.fit(X_train, y_train, batch_size = 50, validation_split=0.2,epochs = 100, verbose = 1)
+results = model.evaluate(X_test, y_test)
+print('loss: ', results[0])
+print('accuracy: ', results[1])
